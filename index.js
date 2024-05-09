@@ -1,17 +1,22 @@
-function isIsomorphic(s, t) {
-  if (s.length !== t.length) return false;
-  const sMap = new Map();
-  const tMap = new Map();
-  for (let i = 0; i < s.length; i++) {
-    const sChar = s[i];
-    const tChar = t[i];
-    if (
-      (sMap.has(sChar) && sMap.get(sChar) !== tChar) ||
-      (tMap.has(tChar) && tMap.get(tChar) !== sChar)
-    )
-      return false;
-    sMap.set(sChar, tChar);
-    tMap.set(tChar, sChar);
+function threeSum(nums) {
+  nums.sort((a, b) => a - b);
+  const result = [];
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i === 0 || (i > 0 && nums[i] !== nums[i - 1])) {
+      let low = i + 1;
+      let high = nums.length - 1;
+      let sum = 0 - nums[i];
+      while (low < high) {
+        if (nums[low] + nums[high] === sum) {
+          result.push([nums[i], nums[low], nums[high]]);
+          while (low < high && nums[low] === nums[low + 1]) low++;
+          while (low < high && nums[high] === nums[high - 1]) high--;
+          low++;
+          high--;
+        } else if (nums[low] + nums[high] < sum) low++;
+        else high--;
+      }
+    }
   }
-  return true;
+  return result;
 }
