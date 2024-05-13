@@ -1,3 +1,6 @@
-const word = "hello";
-const reversedWord = word.split("").reverse().join("");
-console.log(reversedWord); // olleh
+const number = 10;
+if (number % 2 === 0) {
+  console.log("Even number");
+} else {
+  console.log("Odd number");
+}
